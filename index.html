@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore held-out conversion model performance and review-capacity tradeoffs on real UCI online shopping sessions.">
+  <title>E-commerce Conversion Prioritization Lab | Applied ML & AI</title>
+  <link rel="stylesheet" href="../../styles.css"><link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <header class="site-header"><a class="brand" href="../../">SA <span>Applied ML</span></a><span class="header-note">APPLIED DATA SCIENCE · DEMO 03</span></header>
+  <main class="app-main">
+    <a class="back" href="../../">← ALL PROTOTYPES</a>
+    <section class="app-hero"><div><p class="eyebrow">COST-AWARE CLASSIFICATION · MODEL EVALUATION</p><h1>E-commerce Conversion Prioritization</h1><p>Compare practical classifiers on real shopping-session data, then explore how the operating threshold changes the share of sessions reviewed and conversions captured.</p></div><span class="status-pill">● REAL PUBLIC DATA</span></section>
+    <section id="load-state" class="panel note" aria-live="polite">Loading the measured UCI benchmark…</section>
+    <section id="dashboard" hidden>
+      <div id="headline-metrics" class="metrics"></div>
+      <div class="dashboard-grid conversion-grid">
+        <section class="panel"><h2>Choose an operating threshold</h2><p class="note">The curve below is calculated from a locked held-out test split. Move the threshold to inspect the review-versus-capture trade-off; do not treat this random holdout as a live deployment estimate.</p>
+          <div class="form-row"><label for="threshold">Probability threshold <output id="threshold-out">—</output></label><input id="threshold" type="range" min="5" max="95" step="1" value="50"></div>
+          <div class="benchmark-summary" id="threshold-metrics"></div>
+          <div class="chart-wrap"><svg id="pr-chart" class="chart" role="img" aria-label="Precision and recall versus score threshold"></svg></div>
+          <p class="note">At higher thresholds, fewer sessions are flagged. The model predicts observed purchase behavior; it does not prove that an intervention causes additional purchases.</p>
+        </section>
+        <section class="panel"><h2>Model selection</h2><p class="note">Candidates were ranked on validation average precision. The selected model was refit on train + validation; the test set was used once for final reporting. The majority-probability baseline is included for context.</p><div class="table-wrap"><table><thead><tr><th>Candidate</th><th>Validation AP</th><th>Test AP</th><th>Test Brier</th></tr></thead><tbody id="model-rows"></tbody></table></div><div id="split-note" class="result-box neutral"></div></section>
+      </div>
+      <section class="panel segment-panel"><h2>Score and outcome by visitor type</h2><p class="note">Aggregate held-out test-set rates. Small segment counts and historical sample differences limit comparisons.</p><div id="segments" class="segment-grid"></div></section>
+      <section class="panel"><h2>Use limits</h2><ul id="limitations" class="limitations"></ul><p class="source-note">Data: <a href="https://archive.ics.uci.edu/dataset/468/online+shoppers+purchasing+intention+dataset">UCI Online Shoppers Purchasing Intention</a> · CC BY 4.0 · Sakar &amp; Kastro (2018), DOI: 10.24432/C5F88Q. Training/evaluation code and aggregate report are in <a href="https://github.com/sumeetamin/applied-ml-ai-prototypes/tree/main/benchmarks/ecommerce-conversion">the benchmark directory</a>.</p></section>
+    </section>
+    <footer class="footer-small">Real historical data · Aggregate report only · No API calls or visitor data collection · <a href="../../">Project home</a></footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
+
