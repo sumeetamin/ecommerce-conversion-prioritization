@@ -2,6 +2,10 @@
 
 An interactive model-selection and threshold-review demo using the UCI Online Shoppers Purchasing Intention dataset. It shows how candidate ranking metrics and a fixed test-set threshold curve can inform a limited human review queue.
 
+**[Open live demo](https://sumeetamin.github.io/ecommerce-conversion-prioritization/)**
+
+On the held-out 2,466-session test set, the selected histogram gradient boosting model achieved 0.737 average precision and 0.930 ROC-AUC. At the validation-selected 0.45 threshold, precision was 0.689 and recall was 0.649. The majority-probability baseline AP was 0.155.
+
 ## What is measured
 
 - Logistic regression and histogram gradient boosting are compared on validation average precision.
